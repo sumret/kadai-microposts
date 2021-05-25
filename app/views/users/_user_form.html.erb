@@ -31,6 +31,13 @@
                 <%= f.label :password_confirmation, 'Confirmation' %>
                 <%= f.password_field :password_confirmation, class: 'form-control' %>
             </div>
+
+            <% if isadmin? %>
+                <div class="form-group">
+                    <%= f.label :privilege, 'Privilege' %>
+                    <%= f.text_field :privilege, class: 'form-control' %>
+                </div>
+            <% end %>
             
             <%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
             

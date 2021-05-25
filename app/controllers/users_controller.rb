@@ -18,11 +18,18 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-
+    unless (current_user ==  @user) || isadmin?
+      redirect_to root_path
+    end
   end
 
   def update
     @user = User.find(params[:id])
+
+    unless (current_user ==  @user) || isadmin?
+      redirect_to root_path
+    end
+
     if @user.update(user_params)
       flash[:success] = 'ユーザプロフィールを更新しました。'
       redirect_back(fallback_location: root_path)
@@ -35,9 +42,14 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    unless (current_user ==  @user) || isadmin?
+      redirect_to root_path
+    end
+
     @user.destroy
     flash[:success] = '退会しました。'
-    redirect_back(fallback_location: root_path)
+    redirect_to root_path
+
   end
 
   def create
@@ -73,7 +85,11 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :age, :profile)
+    if isadmin?
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :age, :profile, :privilege)
+    else
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :age, :profile)
+    end
   end
 
 end

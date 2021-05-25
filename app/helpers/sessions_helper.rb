@@ -3,6 +3,10 @@ module SessionsHelper
         @current_user ||= User.find_by(id: session[:user_id])
     end
     
+    def isadmin?
+        current_user.privilege == 'admin'
+    end
+
     def logged_in?
         !!current_user
     end
