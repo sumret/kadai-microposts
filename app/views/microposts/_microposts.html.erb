@@ -11,15 +11,19 @@
                 </div>
                 <div>
                     <% if current_user == micropost.user %>
-                        <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+                        <%= link_to "edit", edit_micropost_path(micropost), method: :get, class: 'btn btn-primary btn-sm' %>
                     <% end %>
                     
                     <% if current_user.isfavorite?(micropost) %>
-                    	<%= link_to "unfavorite", favorite_path(micropost.favorites.find_by(user_id: current_user.id), micropost_id: micropost.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-primary btn-sm' %>
+                    	<%= link_to "unfavorite", favorite_path(micropost.favorites.find_by(user_id: current_user.id), micropost_id: micropost.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-dark btn-sm' %>
                     <% else %>
-                    	<%= link_to "favorite", favorites_path(micropost.favorites.find_by(user_id: current_user.id), micropost_id: micropost.id), method: :post, class: 'btn btn-primary btn-sm' %>
+                    	<%= link_to "favorite", favorites_path(micropost.favorites.find_by(user_id: current_user.id), micropost_id: micropost.id), method: :post, class: 'btn btn-light btn-sm' %>
                     <% end %>
-                    
+
+                    <% if current_user == micropost.user %>
+                        <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+                    <% end %>
+
                 </div>
             </div>
         </li>
