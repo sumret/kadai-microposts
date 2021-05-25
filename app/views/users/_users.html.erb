@@ -5,7 +5,7 @@
                 <img class="mr-2 rounded" src="<%= gravatar_url(user, { size:50 }) %>" alt="">
                 <div class="media-body">
                     <div>
-                        <%= user.name %>
+                        <%= user.name %><%= ' (me)' if user == current_user %>
                     </div>
                     <div>
                         <p>

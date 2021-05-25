@@ -1,9 +1,9 @@
 <div class="row">
     <aside class="col-sm-4">
-        <%= render 'usercard' %>
+        <%= render 'usercard', user: @user %>
     </aside>
     <div class="col-sm-8">
-        <%= render 'navtabs' %>
+        <%= render 'navtabs', user: @user %>
         <%= render 'microposts/microposts', microposts: @favorite_microposts %>
     </div>
 </div>

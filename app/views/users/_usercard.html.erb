@@ -1,9 +1,22 @@
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><%= @user.name %></h3>
+                <h3 class="card-title"><%= user.name %></h3>
             </div>
             <div class="card-body">
-                <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+                <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 500 }) %>" alt="">
+                <div class="row">
+                  <div class="col-sm-3">Name:</div>
+                  <div class="col-sm-9"><%= user.name %></div>
+                  <div class="col-sm-3">Email:</div>
+                  <div class="col-sm-9"><%= user.email %></div>
+                  <div class="col-sm-3">Age:</div>
+                  <div class="col-sm-9"><%= user.age %></div>
+                  <div class="col-sm-3">Profile:</div>
+                  <div class="col-sm-9"><%= simple_format(user.profile) %></div>
+                </div>
             </div>
         </div>
-        <%= render 'relationships/follow_button', user: @user %>
+    	<small><%= link_to("Edit", edit_user_path(user), method: :get, class: 'btn btn-link btn-sm') if current_user ==  user %></small>
+
+        <%= render 'relationships/follow_button', user: user %>
+
