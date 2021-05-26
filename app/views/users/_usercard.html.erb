@@ -3,7 +3,13 @@
                 <h3 class="card-title"><%= user.name %></h3>
             </div>
             <div class="card-body">
-                <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 500 }) %>" alt="">
+                
+                <% if user.avatar.file.nil? %>
+                    <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 500 }) %>" alt=""> 
+                <% else %>
+                    <img class="rounded img-fluid" src="<%= user.avatar.url if user.avatar? %>" alt="">
+                <% end %>
+
             </div>
             <div class="card-body">
                 <div class="row">

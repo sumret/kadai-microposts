@@ -86,9 +86,9 @@ class UsersController < ApplicationController
   
   def user_params
     if isadmin?
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :age, :profile, :privilege)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :age, :profile, :avatar, :privilege)
     else
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :age, :profile)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :age, :profile, :avatar)
     end
   end
 

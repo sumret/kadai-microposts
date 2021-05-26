@@ -1,15 +1,14 @@
         <%= form_with(model: user, local: true) do |f| %>
 
             <%= render 'layouts/error_messages', model: f.object %>
-        
             <div class="form-group">
-                <%= f.label :name, 'Name' %>
-                <%= f.text_field :name, class: 'form-control' %>
+                <%= f.label :name, 'Name *' %>
+                <%= f.text_field :name, class: 'form-control', placeholder: 'Your name', required: true %>
             </div>
             
             <div class="form-group">
-                <%= f.label :email, 'Email' %>
-                <%= f.email_field :email, class: 'form-control' %>
+                <%= f.label :email, 'Email *' %>
+                <%= f.email_field :email, class: 'form-control', placeholder: 'name@example.com', required: true  %>
             </div>
         
             <div class="form-group">
@@ -20,6 +19,11 @@
             <div class="form-group">
                 <%= f.label :profile, 'Profile' %>
                 <%= f.text_area :profile, class: 'form-control' %>
+            </div>
+        
+            <div class="form-group">
+                <%= f.label :avatar, 'Avatar image' %>
+                <%= f.file_field :avatar, class: 'form-control-file' %>
             </div>
         
             <div class="form-group">
@@ -39,6 +43,9 @@
                 </div>
             <% end %>
             
+            <p class="text-right">fields with '*' is required</p>        
+
             <%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
+
             
         <% end %>

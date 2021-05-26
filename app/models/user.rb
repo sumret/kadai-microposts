@@ -7,6 +7,8 @@ class User < ApplicationRecord
     validates :age, length:{ maximum:20 }
     validates :profile, length:{ maximum:1000 }
     validates :privilege, length:{ maximum:10 }
+    
+    mount_uploader :avatar, AvatarUploader
 
     has_secure_password
     
